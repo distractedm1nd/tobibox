@@ -20,10 +20,15 @@ fn main() -> ! {
     };
     
     arduino_hal::delay_ms(1000);
-    mp3_player.write_command(Command::SetVolume(20));
-    mp3_player.write_command(Command::SetAmplification(1, 15));
-    mp3_player.write_command(Command::RandomPlayback);
+    // mp3_player.write_command(Command::SetVolume(20));
+    // mp3_player.write_command(Command::SetAmplification(1, 15));
+    // mp3_player.write_command(Command::RandomPlayback);
+    mp3_player.write_command(Command::Reset);
+    arduino_hal::delay_ms(1000);
+    mp3_player.write_command(Command::PlayWithIndex(1));
+    mp3_player.write_command(Command::SetVolume(10));
     
+    arduino_hal::delay_ms(10000);
     loop {
         mp3_player.write_command(Command::Play);
         arduino_hal::delay_ms(10000);

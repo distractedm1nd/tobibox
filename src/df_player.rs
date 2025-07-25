@@ -9,7 +9,7 @@ const END_BYTE:       u8 = 0xEF;
 
 ///  Returns info with command 0x41 [0x01: info, 0x00: no info]
 // TODO: Actually just use a bool in execute_command
-const ACK: u8 = 0x00;
+const ACK: u8 = 0x01;
 
 pub struct DFPlayerMini {
     pub usart: Usart<USART0, Pin<Input, PD0>, Pin<Output, PD1>>,
@@ -131,7 +131,7 @@ impl DFPlayerMini {
         let (cmd, p1, p2) = cmd.convert_with_params();
         let checksum: u16 = !(VERSION_BYTE as u16 + COMMAND_LENGTH as u16 + cmd as u16 + ACK as u16 + p1 as u16 + p2 as u16);
         let cs_bytes = checksum.to_be_bytes();
-        let out = &[START_BYTE, VERSION_BYTE, COMMAND_LENGTH, cmd, ACK, cs_bytes[0], cs_bytes[1], p1, p2, END_BYTE];
+        let out = &[START_BYTE, VERSION_BYTE, COMMAND_LENGTH, cmd, ACK, p1, p2, cs_bytes[0], cs_bytes[1], END_BYTE];
         
         
         for byte in out {
