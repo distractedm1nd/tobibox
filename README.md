@@ -1,4 +1,4 @@
-# TobiBox
+# TobiBox 🧸📻
 Rust project for the Adafruit Feather RP2040, an RFID activated music box for children.
 
 Also includes a module, yet to be separated into its own crate, for using the DFPlayer Mini MP3 player with embassy-rp.
