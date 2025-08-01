@@ -1,4 +1,4 @@
 [toolchain]
-channel = "nightly-2025-04-27"
-components = ["rust-src", "clippy"]
-profile = "minimal"
+channel = "1.85"
+components = ["rust-src", "rustfmt", "clippy"]
+targets = ["thumbv7em-none-eabi"]
